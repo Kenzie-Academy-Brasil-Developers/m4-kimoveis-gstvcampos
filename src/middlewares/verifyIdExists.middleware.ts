@@ -1,32 +1,18 @@
 import { NextFunction, Request, Response } from "express";
-import { AppError } from "../errors";
-import { addressRepo, categoryRepo, userRepo } from "../repositories";
+import { User } from "../entities";
+import { userRepository } from "../repositories";
 
-type BodyOrParams = "body" | "params";
-type entitie = "user" | "address" | "category";
+export const verifyIdExists = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+): Promise<void> => {
+  const id: number = Number(req.params.id);
 
-const verifyIdExists =
-  (
-    bodyOrParams: BodyOrParams,
-    idKeyName: string,
-    entitie: string,
-    errorMsg: string
-  ) =>
-  async (req: Request, res: Response, next: NextFunction): Promise<void> => {
+  const foundData: User | null = await userRepository.findOneBy({ id });
+  if (!foundData) throw new Error("User not found");
 
+  res.locals = { ...res.locals, foundData };
 
-
-    const foundData: any | null = await [entitie]Repo.findOneBy({
-      id: Number(req[bodyOrParams][idKeyName]),
-    });
-
-    if (!query.rowCount) {
-      throw new AppError(errorMsg, 404);
-    }
-
-    res.locals = { ...res.locals, foundData };
-
-    return next();
-  };
-
-export default verifyIdExists;
+  return next();
+};

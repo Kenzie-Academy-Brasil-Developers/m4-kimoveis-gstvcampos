@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
+import { RealEstate } from "./realEstate.entity";
 
 @Entity("addresses")
 export class Address {
@@ -19,4 +20,7 @@ export class Address {
 
   @Column({ length: 2 })
   state: string;
+
+  @OneToOne(() => RealEstate, (rs) => rs.address)
+  realEstate: RealEstate;
 }

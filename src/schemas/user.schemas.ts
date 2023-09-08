@@ -19,5 +19,6 @@ const userCreateSchema = userSchema.omit({
 
 const userReturnSchema = userSchema.omit({ password: true });
 const userReadSchema = userReturnSchema.array();
+const userUpdateSchema = userCreateSchema.partial();
 
-export { userSchema, userCreateSchema, userReturnSchema, userReadSchema };
+export { userSchema, userCreateSchema, userReturnSchema, userReadSchema, userUpdateSchema };

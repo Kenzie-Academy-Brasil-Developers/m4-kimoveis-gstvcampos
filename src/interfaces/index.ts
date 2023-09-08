@@ -1,24 +1,16 @@
-import {
-  AddressCreate,
-  AddressReturn,
-  AddressRepo,
-} from "./address.interfaces";
-import {
-  CategoryCreate,
-  CategoryReturn,
-  CategoryRepo,
-} from "./category.interfaces";
-import { UserCreate, UserRead, UserReturn, UserRepo } from "./user.interfaces";
+import { AddressCreate, AddressReturn } from "./address.interfaces";
+import { CategoryCreate, CategoryReturn } from "./category.interfaces";
+import { SessionCreate, SessionReturn } from "./session.interfaces";
+import { UserCreate, UserRead, UserReturn } from "./user.interfaces";
 
 export {
   UserCreate,
   UserRead,
   UserReturn,
-  UserRepo,
   AddressCreate,
   AddressReturn,
-  AddressRepo,
   CategoryCreate,
   CategoryReturn,
-  CategoryRepo,
+  SessionCreate,
+  SessionReturn,
 };

@@ -2,6 +2,7 @@ import {
   Column,
   CreateDateColumn,
   Entity,
+  JoinColumn,
   ManyToOne,
   OneToMany,
   OneToOne,
@@ -32,12 +33,13 @@ export class RealEstate {
   @UpdateDateColumn({ type: "date" })
   updatedAt: string;
 
-  @OneToMany(() => Schedule, (sh) => sh.user)
+  @OneToMany(() => Schedule, (sh) => sh.realEstate)
   schedule: Array<Schedule>;
 
-  @OneToOne(() => Address)
+  @OneToOne(() => Address, (a) => a.realEstate)
+  @JoinColumn()
   address: Address;
 
-  @ManyToOne(() => Category)
+  @ManyToOne(() => Category, (c) => c.realEstate)
   category: Category;
 }
