@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { addressSchema } from "./address.schemas";
-import { categorySchema } from "./category.schemas";
+import { categoryCreateSchema, categorySchema } from "./category.schemas";
 
 const realEstateSchema = z.object({
   id: z.number().positive(),
@@ -15,6 +15,11 @@ const realEstateSchema = z.object({
 
 const realEstateCreateSchema = realEstateSchema.omit({
   id: true,
+  sold: true,
+  createdAt: true,
+  updatedAt: true
+}).extend({
+  category: categoryCreateSchema.array(),
 });
 
 const realEstateReadSchema = realEstateSchema.array();

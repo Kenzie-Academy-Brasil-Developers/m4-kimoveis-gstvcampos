@@ -1,9 +1,9 @@
-import { AddressCreate, AddressReturn } from "./address.interfaces";
 import {
   CategoryCreate,
   CategoryRead,
   CategoryReturn,
 } from "./category.interfaces";
+import { RealEstateCreate, RealEstateRead } from "./realEstate.interfaces";
 import { SessionCreate, SessionReturn } from "./session.interfaces";
 import {
   UserCreate,
@@ -16,12 +16,12 @@ export {
   UserCreate,
   UserRead,
   UserReturn,
-  AddressCreate,
-  AddressReturn,
   CategoryCreate,
   CategoryReturn,
   SessionCreate,
   SessionReturn,
   UserUpdate,
   CategoryRead,
+  RealEstateCreate,
+  RealEstateRead,
 };

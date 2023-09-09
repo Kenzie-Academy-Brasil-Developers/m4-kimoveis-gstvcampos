@@ -12,7 +12,10 @@ const read = async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).json(categories);
 };
 
-const readRealState = async (req: Request, res: Response): Promise<Response> => {
+const readRealState = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
   const id: number = Number(req.params.id);
   const categories = await categoryServices.readRealState(id);
   return res.status(200).json(categories);

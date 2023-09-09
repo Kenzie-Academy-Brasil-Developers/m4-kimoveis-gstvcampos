@@ -10,11 +10,7 @@ const addressSchema = z.object({
 });
 
 const addressCreateSchema = addressSchema.omit({
-  id: true,
-  user: true,
-  createdAt: true,
-  updatedAt: true,
-  deletedAt: true,
+  id: true
 });
 
 export { addressSchema, addressCreateSchema };
