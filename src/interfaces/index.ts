@@ -1,5 +1,9 @@
 import { AddressCreate, AddressReturn } from "./address.interfaces";
-import { CategoryCreate, CategoryReturn } from "./category.interfaces";
+import {
+  CategoryCreate,
+  CategoryRead,
+  CategoryReturn,
+} from "./category.interfaces";
 import { SessionCreate, SessionReturn } from "./session.interfaces";
 import {
   UserCreate,
@@ -19,4 +23,5 @@ export {
   SessionCreate,
   SessionReturn,
   UserUpdate,
+  CategoryRead,
 };

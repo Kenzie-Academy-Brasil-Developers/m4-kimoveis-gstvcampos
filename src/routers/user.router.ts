@@ -2,7 +2,6 @@ import { Router } from "express";
 import middlewares from "../middlewares";
 import { userCreateSchema, userUpdateSchema } from "../schemas";
 import { userControllers } from "../controllers";
-import { verifyToken } from "../middlewares/verifyToken.middleware";
 
 export const userRouter: Router = Router();
 
