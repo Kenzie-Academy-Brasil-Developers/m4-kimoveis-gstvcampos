@@ -12,9 +12,21 @@ const read = async (req: Request, res: Response): Promise<Response> => {
   return res.status(200).json(users);
 };
 
+const partialUpdate = async (
+  req: Request,
+  res: Response
+): Promise<Response> => {
+  const { foundData } = res.locals;
+  const { body } = req;
+
+  const user: UserReturn = await userServices.partialUpdate(foundData, body);
+
+  return res.status(200).json(user);
+};
+
 const destroy = async (req: Request, res: Response): Promise<Response> => {
-  await userServices.destroy(res.locals.foundEntity);
+  await userServices.destroy(res.locals.foundData);
   return res.status(204).json();
 };
 
-export default { create, read, destroy };
+export default { create, read, partialUpdate, destroy };

@@ -5,6 +5,7 @@ const userSchema = z.object({
   name: z.string().max(45),
   email: z.string().max(45).email(),
   password: z.string().max(120),
+  admin: z.boolean().default(false),
   createdAt: z.string().or(z.date()),
   updatedAt: z.string().or(z.date()),
   deletedAt: z.string().or(z.date()).nullable(),
@@ -19,6 +20,6 @@ const userCreateSchema = userSchema.omit({
 
 const userReturnSchema = userSchema.omit({ password: true });
 const userReadSchema = userReturnSchema.array();
-const userUpdateSchema = userCreateSchema.partial();
+const userUpdateSchema = userCreateSchema.partial().omit({ admin: true});
 
 export { userSchema, userCreateSchema, userReturnSchema, userReadSchema, userUpdateSchema };
