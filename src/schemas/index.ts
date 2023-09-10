@@ -4,7 +4,11 @@ import {
   categoryCreateSchema,
   categoryReadSchema,
 } from "./category.schemas";
-import { realEstateCreateSchema, realEstateReadSchema, realEstateSchema } from "./realEstate.schemas";
+import {
+  realEstateCreateSchema,
+  realEstateReadSchema,
+  realEstateSchema,
+} from "./realEstate.schemas";
 import { sessionSchema } from "./session.schemas";
 import {
   userSchema,
@@ -28,5 +32,5 @@ export {
   sessionSchema,
   realEstateCreateSchema,
   realEstateReadSchema,
-  realEstateSchema
+  realEstateSchema,
 };

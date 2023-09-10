@@ -1,4 +1,4 @@
-import { Category, RealEstate } from "../entities";
+import { Address, Category, RealEstate } from "../entities";
 import { AppError } from "../errors";
 import { RealEstateCreate } from "../interfaces";
 import {
@@ -7,41 +7,31 @@ import {
   realEstateRepository,
 } from "../repositories";
 
-const create = async (payload: RealEstateCreate) => {
-  const foundAddres = await addressRepository.findOneBy(payload.address);
+const create = async ({ address, categoryId, ...payload }: RealEstateCreate) => {
+  const foundAddres: Address | null = await addressRepository.findOneBy(address);
   if (foundAddres) throw new AppError("Address already exists", 409);
 
-  const addressCreate = addressRepository.create(payload.address);
+  const addressCreate: Address  = addressRepository.create(address);
   await addressRepository.save(addressCreate);
 
-  const allCategories: Array<Category> = [];
+  const foundCategory: Category | null = await categoryRepository.findOneBy({ id: categoryId});
+  if (!foundCategory) throw new AppError("Invalid category", 404);
 
-  for await (const category of payload.category) {
-    const name = category.name;
-    const foundCategory = await categoryRepository.findOneBy({ name });
+  const realEstate: RealEstate = realEstateRepository.create({
+    ...payload,
+    address: addressCreate,
+    category: { id: categoryId },
+  });
+  await realEstateRepository.save(realEstate);
 
-    if (!foundCategory) {
-      throw new AppError(`Invalid category: ${name}`, 404);
-    }
-
-    allCategories.push(foundCategory);
-  }
-
-  // const realEstate = realEstateRepository.create({
-  //   ...payload,
-  //   payload.address,
-  //   category: allCategories,
-  // });
-  // await realEstateRepository.save(realEstate);
-
-  // return realEstate;
+  return realEstate;
 };
 
 const read = async (): Promise<any> => {
   return await realEstateRepository.find({
     relations: {
-      address: true
-    }
+      address: true,
+    },
   });
 };
 

@@ -7,25 +7,25 @@ import {
   realEstateRepository,
 } from "../repositories";
 
-const create = async (payload: RealEstateCreate) => {
-  const foundAddres = await addressRepository.findOneBy(payload.address);
-  if (foundAddres) throw new AppError("Address already exists", 409);
+const create = async () => {
+  // const foundAddres = await addressRepository.findOneBy(payload.address);
+  // if (foundAddres) throw new AppError("Address already exists", 409);
 
-  const addressCreate = addressRepository.create(payload.address);
-  await addressRepository.save(addressCreate);
+  // const addressCreate = addressRepository.create(payload.address);
+  // await addressRepository.save(addressCreate);
 
-  const allCategories: Array<Category> = [];
+  // const allCategories: Array<Category> = [];
 
-  for await (const category of payload.category) {
-    const name = category.name;
-    const foundCategory = await categoryRepository.findOneBy({ name });
+  // for await (const category of payload.category) {
+  //   const name = category.name;
+  //   const foundCategory = await categoryRepository.findOneBy({ name });
 
-    if (!foundCategory) {
-      throw new AppError(`Invalid category: ${name}`, 404);
-    }
+  //   if (!foundCategory) {
+  //     throw new AppError(`Invalid category: ${name}`, 404);
+  //   }
 
-    allCategories.push(foundCategory);
-  }
+  //   allCategories.push(foundCategory);
+  // }
 
   // const realEstate = realEstateRepository.create({
   //   ...payload,
