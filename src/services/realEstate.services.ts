@@ -28,7 +28,7 @@ const create = async ({
   const realEstate: RealEstate = realEstateRepository.create({
     ...payload,
     address: addressCreate,
-    category: { id: categoryId },
+    category: foundCategory,
   });
   await realEstateRepository.save(realEstate);
 
