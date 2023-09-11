@@ -10,7 +10,7 @@ const addressSchema = z.object({
 });
 
 const addressCreateSchema = addressSchema.omit({
-  id: true
+  id: true,
 });
 
 export { addressSchema, addressCreateSchema };

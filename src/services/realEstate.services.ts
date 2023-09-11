@@ -7,14 +7,22 @@ import {
   realEstateRepository,
 } from "../repositories";
 
-const create = async ({ address, categoryId, ...payload }: RealEstateCreate) => {
-  const foundAddres: Address | null = await addressRepository.findOneBy(address);
+const create = async ({
+  address,
+  categoryId,
+  ...payload
+}: RealEstateCreate) => {
+  const foundAddres: Address | null = await addressRepository.findOneBy(
+    address
+  );
   if (foundAddres) throw new AppError("Address already exists", 409);
 
-  const addressCreate: Address  = addressRepository.create(address);
+  const addressCreate: Address = addressRepository.create(address);
   await addressRepository.save(addressCreate);
 
-  const foundCategory: Category | null = await categoryRepository.findOneBy({ id: categoryId});
+  const foundCategory: Category | null = await categoryRepository.findOneBy({
+    id: categoryId,
+  });
   if (!foundCategory) throw new AppError("Invalid category", 404);
 
   const realEstate: RealEstate = realEstateRepository.create({

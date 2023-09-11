@@ -10,7 +10,9 @@ export const verifyNameExists = async (
 ): Promise<void> => {
   const name: string = req.body.name;
 
-  const foundEntity: Category | null = await categoryRepository.findOneBy({ name });
+  const foundEntity: Category | null = await categoryRepository.findOneBy({
+    name,
+  });
   if (foundEntity) throw new AppError("Category already exists", 409);
 
   return next();

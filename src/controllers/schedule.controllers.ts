@@ -2,7 +2,8 @@ import { Request, Response } from "express";
 import { scheduleServices } from "../services";
 
 const create = async (req: Request, res: Response): Promise<Response> => {
-  const schedule = await scheduleServices.create(req.body);
+  const userId = res.locals.decoded.sub;
+  const schedule = await scheduleServices.create(userId, req.body);
   return res.status(201).json(schedule);
 };
 

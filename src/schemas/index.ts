@@ -9,6 +9,7 @@ import {
   realEstateReadSchema,
   realEstateSchema,
 } from "./realEstate.schemas";
+import { scheduleCreateSchema, scheduleSchema } from "./schedule.schemas";
 import { sessionSchema } from "./session.schemas";
 import {
   userSchema,
@@ -33,4 +34,6 @@ export {
   realEstateCreateSchema,
   realEstateReadSchema,
   realEstateSchema,
+  scheduleSchema,
+  scheduleCreateSchema,
 };

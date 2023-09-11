@@ -4,6 +4,7 @@ import {
   CategoryReturn,
 } from "./category.interfaces";
 import { RealEstateCreate, RealEstateRead } from "./realEstate.interfaces";
+import { ScheduleCreate } from "./schedule.interfaces";
 import { SessionCreate, SessionReturn } from "./session.interfaces";
 import {
   UserCreate,
@@ -24,5 +25,5 @@ export {
   CategoryRead,
   RealEstateCreate,
   RealEstateRead,
-  
+  ScheduleCreate,
 };

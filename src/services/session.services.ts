@@ -5,10 +5,7 @@ import { SessionCreate, SessionReturn } from "../interfaces";
 import { userRepository } from "../repositories";
 import { sign } from "jsonwebtoken";
 
-const create = async ({
-  email,
-  password,
-}: SessionCreate): Promise<SessionReturn> => {
+const create = async ({ email, password }: SessionCreate): Promise<any> => {
   const foundUser: User | null = await userRepository.findOneBy({ email });
   if (!foundUser) throw new AppError("Invalid credentials", 401);
 
