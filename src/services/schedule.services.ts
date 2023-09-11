@@ -58,7 +58,13 @@ const read = async (realEstateId: number): Promise<any> => {
     where: {
       id: realEstateId,
     },
-    relations: ["address", "schedule", "category", "user"],
+    relations: {
+      address: true,
+      category: true,
+      schedules: {
+        user: true
+      }
+    },
   });
 
   if (!realEstateFound) {
