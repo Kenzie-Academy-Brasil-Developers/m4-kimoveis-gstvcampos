@@ -5,7 +5,7 @@ import { userRepository } from "../repositories";
 import { hash } from "bcryptjs";
 
 const create = async (payload: UserCreate): Promise<UserReturn> => {
-  payload.password = await hash(payload.password, 10);
+  payload.password = await hash(payload.password, 8);
 
   const user: User = userRepository.create(payload);
   await userRepository.save(user);
@@ -22,7 +22,7 @@ const partialUpdate = async (
   payload: UserUpdate
 ): Promise<UserReturn> => {
   if (payload.password) {
-    payload.password = await hash(payload.password, 10);
+    payload.password = await hash(payload.password, 8);
   }
 
   const userUpdated: User = await userRepository.save({ ...user, ...payload });
